@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "description": "",
   "engines": {
-    "node": "5.9.1",
+    "node": "5.9.1"
   },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "webpack -d --watch",
     "build" : "webpack -p",
-    "postinstall": "webpack -p",
+    "postinstall": "webpack -p"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +22,6 @@
     "webpack": "^1.12.9",
     "express": "^4.13.3",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-  },
+    "react-dom": "^0.14.3"
+  }
 }
