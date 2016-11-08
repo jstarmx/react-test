@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "webpack -d --watch",
-    "build" : "webpack -p"
+    "build" : "webpack -p",
+    "postinstall": "webpack -p"
   },
   "author": "",
   "license": "ISC",
