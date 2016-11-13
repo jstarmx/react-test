@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const html = require('html-webpack-plugin');
 const path = require('path');
 
 const PATHS = {
@@ -8,9 +9,7 @@ const PATHS = {
 };
 
 const config = {
-  entry: {
-    scripts: path.join(PATHS.scripts, 'app.js')
-  },
+  entry: path.join(PATHS.scripts, 'app.js'),
   output: {
     path: PATHS.build,
     filename: 'bundle.js',
@@ -18,12 +17,23 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  module : {
-    loaders : [
+  plugins: [
+    new html({
+      title: 'Bloop bloop',
+      template: path.join(PATHS.views, 'index.ejs'),
+    })
+  ],
+  module: {
+    loaders: [
       {
-        test : /\.jsx?/,
-        include : PATHS.scripts,
-        loader : 'babel',
+        test: /\.jsx?$/,
+        include: PATHS.scripts,
+        loader: 'babel',
+      },
+      {
+        test: /\.ejs$/,
+        include: PATHS.views,
+        loader: 'ejs',
       },
     ]
   },
