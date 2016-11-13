@@ -1,22 +1,40 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const html = require('html-webpack-plugin');
+const path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'public');
-var APP_DIR = path.resolve(__dirname, 'app');
+const PATHS = {
+  build: path.join(__dirname, 'public'),
+  scripts: path.join(__dirname, 'app', 'scripts'),
+  views: path.join(__dirname, 'app', 'views'),
+};
 
-var config = {
-  entry: APP_DIR + '/index.jsx',
+const config = {
+  entry: path.join(PATHS.scripts, 'app.js'),
   output: {
-    path: BUILD_DIR,
+    path: PATHS.build,
     filename: 'bundle.js',
   },
-  module : {
-    loaders : [
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  plugins: [
+    new html({
+      title: 'Bloop bloop',
+      template: path.join(PATHS.views, 'index.ejs'),
+    })
+  ],
+  module: {
+    loaders: [
       {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel',
-      }
+        test: /\.jsx?$/,
+        include: PATHS.scripts,
+        loader: 'babel',
+      },
+      {
+        test: /\.ejs$/,
+        include: PATHS.views,
+        loader: 'ejs',
+      },
     ]
   },
 };
