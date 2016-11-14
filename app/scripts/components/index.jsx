@@ -1,13 +1,17 @@
 import React from 'react';
 
-const App = React.createClass({
+const Component = React.createClass({
   render() {
     return (
       <div>
-        <p>Yo React2</p>
+        <p onClick={this.handleClick}>I'm from the server</p>
       </div>
     );
-  }
+  },
+
+  handleClick() {
+    alert('clicked!!!');
+  },
 });
 
-module.exports = App;
+module.exports = Component;
