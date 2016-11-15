@@ -1,18 +1,15 @@
 {
   "name": "react-test",
   "version": "0.0.1",
-  "description": "",
   "engines": {
-    "node": "5.9.1"
+    "node": "7.1.0"
   },
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "webpack -d --watch",
-    "build": "webpack -p",
-    "postinstall": "webpack -p"
+    "dev": "rm -rf ./public && webpack -d --watch",
+    "build": "rm -rf ./public && webpack -p",
+    "heroku-postbuild": "webpack -p"
   },
-  "author": "",
+  "author": "James Starkie",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.2.1",
@@ -20,11 +17,18 @@
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babel-register": "^6.18.0",
+    "css-loader": "^0.25.0",
     "ejs": "^2.5.2",
     "ejs-loader": "^0.3.0",
     "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.12.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "webpack": "^1.12.9"
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.12.9",
+    "webpack-merge": "^0.16.0",
+    "webpack-validator": "^2.2.9"
   }
 }
