@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "rm -rf ./public && webpack -d --watch",
     "build": "rm -rf ./public && webpack -p",
-    "heroku-postbuild": "webpack -p"
+    "postinstall": "webpack -p"
   },
   "author": "James Starkie",
   "license": "ISC",
