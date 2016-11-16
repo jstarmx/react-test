@@ -1,17 +1,27 @@
 require('babel-register');
 
-const files = require('./server/files');
 const express = require('express');
+const pages = require('./server/pages');
+const flickr = require('./api/flickr');
+const photoset = require('./stores/photoset');
 const app = express();
 
 app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
-
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (request, response) => {
-  response.render('index', { body: files.index() });
+  flickr()
+    .then(() => {
+      response.render('index', {
+        body: pages.index(photoset.get()),
+        preloadedState: photoset.get(),
+      });
+    })
+    .catch(() => {
+      response.send('an error occurred');
+    });
 });
 
 app.listen(app.get('port'), () => {

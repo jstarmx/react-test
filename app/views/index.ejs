@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="/app.css" media="screen">
   </head>
   <body>
-    <div id="app"><%- body %></div>
+    <div id="gallery"><%- body %></div>
+    <script>
+      window.__PRELOADED_STATE__ = <%- JSON.stringify(preloadedState) %>;
+    </script>
     <script type="text/javascript" src="/manifest.js"></script>
     <script type="text/javascript" src="/vendor.js"></script>
     <script type="text/javascript" src="/app.js"></script>

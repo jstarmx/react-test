@@ -1,5 +1,6 @@
-import React from 'react';
-import {render} from 'react-dom';
-import Component from './components/index';
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Gallery = require('./components/gallery');
+const preloadedState = window.__PRELOADED_STATE__;
 
-render(<Component/>, document.getElementById('app'));
+ReactDOM.render(<Gallery photoset={preloadedState} />, document.getElementById('gallery'));
