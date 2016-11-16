@@ -6,7 +6,7 @@ const Gallery = React.createClass({
       <div>
         {this.props.photoset.map((photo, i) => {
           return (
-            <img src={this.url(photo)} key={i} />
+            <img src={this.url(photo)} key={i} onClick={this.handleClick} />
           );
         })}
       </div>
@@ -14,7 +14,7 @@ const Gallery = React.createClass({
   },
 
   handleClick() {
-    alert('clicked!!!');
+    console.log('clicked!!!');
   },
 
   url(photo) {
