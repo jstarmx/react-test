@@ -1,5 +1,5 @@
-import React from 'react';
-import {render} from 'react-dom';
-import Component from './components/index';
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Gallery = require('./components/gallery');
 
-render(<Component/>, document.getElementById('app'));
+ReactDOM.render(<Gallery />, document.getElementById('gallery'));
