@@ -1,6 +1,10 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Gallery = require('./components/gallery');
-const preloadedState = window.__PRELOADED_STATE__;
+const Lightbox = require('./components/lightbox');
+const photoset = require('./stores/photoset');
 
-ReactDOM.render(<Gallery photoset={preloadedState} />, document.getElementById('gallery'));
+photoset.set(window.__PRELOADED_STATE__);
+
+ReactDOM.render(<Gallery photos={photoset.get()} />, document.getElementById('gallery'));
+ReactDOM.render(<Lightbox />, document.getElementById('lightbox'));

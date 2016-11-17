@@ -1,25 +1,15 @@
 const React = require('react');
+const Thumb = require('./thumb');
 
 const Gallery = React.createClass({
-  render() {
+  render () {
     return (
-      <div>
-        {this.props.photoset.map((photo, i) => {
-          return (
-            <img src={this.url(photo)} key={i} onClick={this.handleClick} />
-          );
+      <ul className="gallery">
+        {this.props.photos.map((photo) => {
+          return <Thumb photo={photo} key={photo.id} />;
         })}
-      </div>
+      </ul>
     );
-  },
-
-  handleClick() {
-    console.log('clicked!!!');
-  },
-
-  url(photo) {
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
-      '/' + photo.id + '_' + photo.secret + '.jpg';
   },
 });
 

@@ -1,9 +1,9 @@
 require('babel-register');
 
 const express = require('express');
-const pages = require('./server/pages');
-const flickr = require('./api/flickr');
-const photoset = require('./stores/photoset');
+const pages = require('./lib/pages');
+const flickr = require('./app/scripts/api/flickr');
+const photoset = require('./app/scripts/stores/photoset');
 const app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -18,8 +18,7 @@ app.get('/', (request, response) => {
         body: pages.index(photoset.get()),
         preloadedState: photoset.get(),
       });
-    })
-    .catch(() => {
+    }, () => {
       response.send('an error occurred');
     });
 });

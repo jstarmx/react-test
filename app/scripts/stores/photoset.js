@@ -6,6 +6,6 @@ module.exports = {
   },
 
   set (data) {
-    photoset = data.photoset.photo;
+    photoset = data;
   },
 };
