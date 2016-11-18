@@ -1,9 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const parts = require('./lib/webpack-parts');
 
 const PATHS = {
   build: path.join(__dirname, 'public'),
@@ -12,7 +10,7 @@ const PATHS = {
   views: path.join(__dirname, 'app', 'views'),
 };
 
-const common = {
+const config = {
   entry: {
     app: [
       path.join(PATHS.scripts, 'app.js'),
@@ -45,31 +43,8 @@ const common = {
     new ExtractTextPlugin('app.css'),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
-      minChunks: Infinity,
     }),
   ],
 };
-
-var config;
-
-switch (process.env.npm_lifecycle_event) {
-  case 'build':
-    config = merge(
-      common,
-      {
-        plugins: [
-          new webpack.optimize.UglifyJsPlugin({
-            compress: {
-              warnings: false
-            }
-          }),
-        ],
-      }
-    );
-    break;
-
-  default:
-    config = merge(common, {});
-}
 
 module.exports = validate(config);

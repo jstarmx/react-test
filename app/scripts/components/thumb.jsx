@@ -4,26 +4,27 @@ const Actions = require('../flux/actions');
 const Thumb = React.createClass({
   render () {
     return (
-      <li
-        className="gallery__thumb"
-        style={{ backgroundImage: 'url(' + this.url() + ')' }}
-      >
+      <li className="gallery__thumb" style={this._style()} >
         <a
           className="gallery__link"
-          href={this.url('c')}
-          onClick={this.handleClick}
+          href={this._url('c')}
+          onClick={this._handleClick}
           target="_blank"
         />
       </li>
     );
   },
 
-  handleClick (e) {
+  _handleClick (e) {
     e.preventDefault();
-    Actions.launchLightbox(this.url('c'));
+    Actions.setLightbox(this._url('c'));
   },
 
-  url (size) {
+  _style () {
+    return { backgroundImage: 'url(' + this._url() + ')' };
+  },
+
+  _url (size) {
     const photo = this.props.photo;
     const suffix = size ? ('_' + size) : '';
 
