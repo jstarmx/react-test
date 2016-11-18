@@ -1,25 +1,20 @@
 const React = require('react');
+const Thumb = require('./thumb');
+const Store = require('../flux/store');
 
 const Gallery = React.createClass({
-  render() {
+  getInitialState () {
+    return { photos: Store.get('photos') };
+  },
+
+  render () {
     return (
-      <div>
-        {this.props.photoset.map((photo, i) => {
-          return (
-            <img src={this.url(photo)} key={i} onClick={this.handleClick} />
-          );
+      <ul className="gallery">
+        {this.state.photos.map((photo) => {
+          return <Thumb photo={photo} key={photo.id} />;
         })}
-      </div>
+      </ul>
     );
-  },
-
-  handleClick() {
-    console.log('clicked!!!');
-  },
-
-  url(photo) {
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server +
-      '/' + photo.id + '_' + photo.secret + '.jpg';
   },
 });
 
