@@ -30,6 +30,7 @@
     "style-loader": "^0.13.1",
     "superagent": "^2.3.0",
     "webpack": "^1.12.9",
+    "webpack-merge": "^0.17.0",
     "webpack-validator": "^2.2.9"
   }
 }

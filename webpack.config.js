@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -10,7 +11,7 @@ const PATHS = {
   views: path.join(__dirname, 'app', 'views'),
 };
 
-const config = {
+const common = {
   entry: {
     app: [
       path.join(PATHS.scripts, 'app.js'),
@@ -46,5 +47,33 @@ const config = {
     }),
   ],
 };
+
+var config;
+
+switch (process.env.npm_lifecycle_event) {
+  case 'build':
+  case 'postinstall':
+    config = merge(
+      common,
+      {
+        plugins: [
+          new webpack.DefinePlugin({
+            'process.env': {
+              NODE_ENV: JSON.stringify('production'),
+            },
+          }),
+          new webpack.optimize.UglifyJsPlugin({
+            compress: {
+              warnings: false,
+            },
+          }),
+        ],
+      }
+    );
+    break;
+
+  default:
+    config = merge(common, {});
+}
 
 module.exports = validate(config);
